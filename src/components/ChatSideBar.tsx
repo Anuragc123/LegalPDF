@@ -17,14 +17,14 @@ const ChatSideBar = ({ chats, chatId, isPro }: Props) => {
   const [loading, setLoading] = React.useState(false);
 
   return (
-    <div className="w-full h-screen p-4 soff text-gray-200 bg-gray-900 flex flex-col">
+    <div className="w-full h-screen p-4 text-gray-200 bg-gray-900 flex flex-col overflow-hidden">
       <Link href="/">
         <Button className="w-full border-dashed border-white border">
           <PlusCircle className="mr-2 w-4 h-4">New Chat</PlusCircle>
         </Button>
       </Link>
 
-      <div className="flex-1 gap-2 pb-20 mt-4 overflow-y-auto">
+      <div className="flex-1 gap-2 pb-20 mt-4 overflow-y-auto overflow-x-hidden">
         {chats.map((chat) => (
           <Link key={chat.id} href={`/chat/${chat.id}`}>
             <div
@@ -42,12 +42,15 @@ const ChatSideBar = ({ chats, chatId, isPro }: Props) => {
         ))}
       </div>
 
-      <div className="mt-4 flex flex-col items-center">
-        <div className="flex items-center gap-2 text-sm text-slate-500">
+      <div className="mt-4">
+        <div className="flex items-center justify-between gap-2 text-sm text-slate-500">
           <Link href="/">Home</Link>
           <Link href="/">Source</Link>
         </div>
-        <SubscriptionButton isPro={isPro} />
+        <div className="w-full flex justify-center mt-2">
+          {/* Ensure SubscriptionButton fits within the sidebar width */}
+          <SubscriptionButton isPro={isPro} />
+        </div>
       </div>
     </div>
   );
