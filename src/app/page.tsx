@@ -8,7 +8,6 @@ import { UserButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import { eq } from "drizzle-orm";
 import { ArrowRight, LogIn } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 
 export default async function Home() {
