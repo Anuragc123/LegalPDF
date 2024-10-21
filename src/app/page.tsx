@@ -14,7 +14,7 @@ export default async function Home() {
   const { userId } = await auth();
   const isAuth = !!userId;
   const isPro = await checkSubscription();
-  console.log(isPro)
+  console.log(isPro);
   let firstChat;
   if (userId) {
     firstChat = await db.select().from(chats).where(eq(chats.userId, userId));
@@ -27,7 +27,9 @@ export default async function Home() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
         <div className="flex flex-col items-center text-center">
           <div className="flex items-center">
-            <h1 className="mr-3 text-5xl font-semibold">Chat wih PDF</h1>
+            <h1 className="mr-3 text-5xl font-semibold">
+              AI Based Legal Document Assistant
+            </h1>
             <UserButton afterSignOutUrl="/" />
           </div>
           <div className="flex mt-2">
@@ -44,8 +46,8 @@ export default async function Home() {
             </div>
           </div>
           <p className="mx-w-xl mt-1 text-lg text-slate-600">
-            Join millions of students, researchers and professionals to
-            instantly answer questions and understand research with AI
+            Summarize your Legal Documents and chat with them easily with our
+            advanced AI based Legal Document Assistant
           </p>
           <div className="w-full mt-4">
             {isAuth ? (
