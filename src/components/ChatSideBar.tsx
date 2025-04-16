@@ -20,7 +20,7 @@ const ChatSideBar = ({ chats, chatId, isPro }: Props) => {
     <div className="w-full h-screen p-4 text-gray-200 bg-gray-900 flex flex-col overflow-hidden">
       <Link href="/">
         <Button className="w-full border-dashed border-white border">
-          <PlusCircle className="mr-2 w-4 h-4">New Chat</PlusCircle>
+          <PlusCircle className="mr-2 w-4 h-4"/>New Chat
         </Button>
       </Link>
 

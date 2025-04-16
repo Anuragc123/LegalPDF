@@ -20,6 +20,13 @@ export async function POST(req: Request) {
 
     const fileKey = _chats[0].fileKey;
     const lastMessage = messages[messages.length - 1];
+    // if (
+    //   lastMessage.content.toLowerCase().includes("summary") ||
+    //   lastMessage.content.toLowerCase().includes("summarize")
+    // ) {
+    // } else {
+    // }
+
     const context = await getContext(lastMessage.content, fileKey);
 
     // Create the system prompt with context

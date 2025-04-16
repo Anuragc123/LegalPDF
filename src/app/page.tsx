@@ -7,7 +7,7 @@ import { checkSubscription } from "@/lib/subscription";
 import { UserButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import { eq } from "drizzle-orm";
-import { ArrowRight, LogIn } from "lucide-react";
+import { ArrowRight, LogIn, FileText, Upload } from "lucide-react";
 import Link from "next/link";
 
 export default async function Home() {
@@ -51,7 +51,14 @@ export default async function Home() {
           </p>
           <div className="w-full mt-4">
             {isAuth ? (
-              <FileUpload />
+              <>
+                <FileUpload />
+                <div className="mt-4">
+                  <Link href="/generate-docs">
+                    <Button>Generate Legal Document</Button>
+                  </Link>
+                </div>
+              </>
             ) : (
               <Link href="/sign-in">
                 <Button>

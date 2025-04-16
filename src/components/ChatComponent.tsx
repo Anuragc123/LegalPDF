@@ -50,6 +50,8 @@ const ChatComponent = ({ chatId }: Props) => {
       const response = await axios.post("/api/chat", {
         messages: [...messages, userMessage],
         chatId,
+      },{
+        headers:{"Content-Type":"application/json"}
       });
       const aiMessage: Message = {
         id: Date.now().toString(),

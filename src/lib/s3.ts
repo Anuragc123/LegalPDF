@@ -3,7 +3,7 @@ import { PutObjectCommandOutput, S3 } from "@aws-sdk/client-s3";
 export async function uploadToS3(
   file: File
 ): Promise<{ file_key: string; file_name: string }> {
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     try {
       const s3 = new S3({
         region: "ap-south-1",
@@ -14,16 +14,24 @@ export async function uploadToS3(
       });
 
       const file_key =
-        "uploads/" + Date.now().toString() + file.name.replace(" ", "-");
+        "uploads/" + Date.now().toString() + file.name.replaceAll(" ", "-");
+      console.log("Here=",file_key);
+        const fileBuffer = await file.arrayBuffer();
+
 
       const params = {
         Bucket: process.env.NEXT_PUBLIC_S3_BUCKET_NAME!,
         Key: file_key,
-        Body: file,
+        Body: new Uint8Array(fileBuffer),
       };
+      console.log("s3 params =",params)
+
       s3.putObject(
         params,
         (err: any, data: PutObjectCommandOutput | undefined) => {
+          if (err) {
+            console.log("Upload error s3",err);
+          }
           return resolve({
             file_key,
             file_name: file.name,

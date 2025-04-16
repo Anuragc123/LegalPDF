@@ -14,15 +14,18 @@ export async function downloadFromS3(file_key: string): Promise<string> {
         Bucket: process.env.NEXT_PUBLIC_S3_BUCKET_NAME!,
         Key: file_key,
       };
+      // console.log(params);
 
       const obj = await s3.getObject(params);
-      const file_name = `/tmp/elliott${Date.now().toString()}.pdf`;
+      // console.log(obj)
+      const file_name = `/tmp/anurag${Date.now().toString()}.pdf`;
 
       if (obj.Body instanceof require("stream").Readable) {
         // AWS-SDK v3 has some issues with their typescript definitions, but this works
         // https://github.com/aws/aws-sdk-js-v3/issues/843
         //open the writable stream and write the file
         const file = fs.createWriteStream(file_name);
+        // console.log('in fs', file)
         file.on("open", function (fd) {
           // @ts-ignore
           obj.Body?.pipe(file).on("finish", () => {

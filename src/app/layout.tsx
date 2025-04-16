@@ -2,8 +2,9 @@ import Providers from "@/components/Providers";
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-// import { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
+import ChatbotButton from "@/components/chatbot/chatbot-button";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,8 +22,11 @@ export default function RootLayout({
     <ClerkProvider>
       <Providers>
         <html lang="en">
-          <body className={inter.className}>{children}</body>
-          {/* <Toaster /> */}
+          <body className={inter.className}>
+            {children}
+            <Toaster />
+            <ChatbotButton />
+          </body>
         </html>
       </Providers>
     </ClerkProvider>

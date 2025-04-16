@@ -6,6 +6,7 @@ import {
   text,
   timestamp,
   varchar,
+  jsonb,
 } from "drizzle-orm/pg-core";
 
 export const userSystemEnum = pgEnum("user_system_enum", ["system", "user"]);
@@ -41,4 +42,14 @@ export const userSubscriptions = pgTable("user_subscriptions", {
   }).unique(),
   stripePriceId: varchar("stripe_price_id", { length: 256 }),
   stripeCurrentPeriodEnd: timestamp("stripe_current_period_ended_at"),
+});
+
+export const generatedDocuments = pgTable("generated_documents", {
+  id: serial("id").primaryKey(),
+  userId: varchar("user_id", { length: 256 }).notNull(),
+  documentType: text("document_type").notNull(),
+  documentName: text("document_name").notNull(),
+  documentUrl: text("document_url").notNull(),
+  content: text("content"),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
 });
